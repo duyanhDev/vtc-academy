@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNT - Đào tạo Kỹ thuật Thực chiến</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #003087;
+            color: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('./image//z6733604739316_1e2171125ad46f2104d93aea45e386a0.jpg') no-repeat center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            margin-top: 71px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            background: #ff6200;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #e55a00;
+        }
+
+        /* Courses Section */
+        .courses {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .courses h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .course-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .course-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #003087;
+        }
+
+        .course-card p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: #fff;
+            max-width: 800px;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .modal-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content h4 {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            color: #003087;
+        }
+
+        .modal-content ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background: #003087;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">CƠ SỞ ĐÀO TẠO VÀ PHÁT TRIỂN VTC </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Trang chủ</a></li>
+                    <li><a href="#courses">Khóa học</a></li>
+                    <li><a href="#contact">Liên hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>CƠ SỞ ĐÀO TẠO VÀ PHÁT TRIỂN VTC </h1>
+            <p>Khóa học chuyên sâu, thực hành dự án thực tế, hỗ trợ tư vấn trọn đời!</p>
+            <a href="#courses" class="btn">Khám phá khóa học</a>
+        </div>
+    </section>
+
+    <section class="courses" id="courses">
+        <h2>Các Khóa Học Tại VTC</h2>
+        <div class="course-list">
+            <div class="course-card">
+                <h3>Điều khiển Lập trình PLC S7-1200</h3>
+                <p><strong>Thời lượng:</strong> 9 buổi lý thuyết + 6 buổi thực hành</p>
+                <p><strong>Mô tả:</strong> Nắm vững PLC S7-1200, lập trình TIA Portal V19, xử lý tín hiệu analog, đếm
+                    xung tốc độ cao.</p>
+                <a href="#" class="btn details-btn" data-course="plc">Xem chi tiết</a>
+            </div>
+
+            <div class="course-card">
+                <h3>AutoCAD Cơ bản</h3>
+                <p><strong>Thời lượng:</strong> 6 buổi lý thuyết + 4 buổi thực hành</p>
+                <p><strong>Mô tả:</strong> Thành thạo AutoCAD 2D, vẽ và hiệu chỉnh bản vẽ kỹ thuật, quản lý đối tượng,
+                    in ấn.</p>
+                <a href="#" class="btn details-btn" data-course="autocad">Xem chi tiết</a>
+            </div>
+
+            <div class="course-card">
+                <h3>Thiết kế, Lập trình Hệ thống SCADA</h3>
+                <p><strong>Thời lượng:</strong> 9 buổi lý thuyết + 6 buổi thực hành</p>
+                <p><strong>Mô tả:</strong> Thiết kế SCADA (WinCC), lập trình HMI, cấu hình biến tần, kết nối PLC-SCADA.
+                </p>
+                <a href="#" class="btn details-btn" data-course="scada">Xem chi tiết</a>
+            </div>
+
+            <div class="course-card">
+                <h3>Thiết kế Tủ điện Công nghiệp và Dân dụng</h3>
+                <p><strong>Thời lượng:</strong> 10 buổi lý thuyết + 5 buổi thực hành</p>
+                <p><strong>Mô tả:</strong> Hiểu thiết bị điện, thiết kế/lắp đặt tủ điện (MSB, MDB, ATS, tụ bù), lập hồ
+                    sơ dự toán.</p>
+                <a href="#" class="btn details-btn" data-course="tudien">Xem chi tiết</a>
+            </div>
+
+            <div class="course-card">
+                <h3>Thiết kế Điện Hợp Chuẩn</h3>
+                <p><strong>Thời lượng:</strong> 15 buổi lý thuyết + 9 buổi thực hành</p>
+                <p><strong>Mô tả:</strong> Thiết kế hệ thống điện, điện nhẹ, báo cháy, lập hồ sơ M&E, đo bóc khối lượng.
+                </p>
+                <a href="#" class="btn details-btn" data-course="thietkedi">Xem chi tiết</a>
+            </div>
+
+            <div class="course-card">
+                <h3>Kỹ thuật Triển khai Thi công & Giám sát M&E</h3>
+                <p><strong>Thời lượng:</strong> 10 buổi lý thuyết + 5 buổi thực hành</p>
+                <p><strong>Mô tả:</strong> Triển khai thi công, giám sát hệ thống M&E, quản lý chất lượng, an toàn lao
+                    động.</p>
+                <a href="#" class="btn details-btn" data-course="thicongme">Xem chi tiết</a>
+            </div>
+
+            <div class="course-card">
+                <h3>Thiết kế Bản vẽ Điện với CAD Điện</h3>
+                <p><strong>Thời lượng:</strong> 6 buổi lý thuyết + 4 buổi thực hành</p>
+                <p><strong>Mô tả:</strong> Sử dụng AutoCAD Electrical, CADe-Simu để vẽ mạch điện, sơ đồ single line, tủ
+                    ATS.</p>
+                <a href="#" class="btn details-btn" data-course="caddi">Xem chi tiết</a>
+            </div>
+
+            <div class="course-card">
+                <h3>Thiết kế, Thi công Năng lượng Mặt trời Áp mái</h3>
+                <p><strong>Thời lượng:</strong> 9 buổi lý thuyết + 5 buổi thực hành</p>
+                <p><strong>Mô tả:</strong> Thiết kế, thi công hệ thống điện mặt trời áp mái, lập hồ sơ, xử lý sự cố.</p>
+                <a href="#" class="btn details-btn" data-course="nlmt">Xem chi tiết</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div id="modal-body"></div>
+            <a href="#" class="btn register-btn">Đăng ký ngay</a>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <p>Liên hệ: VTC Training | Email: vtc.edu.vn@gmail.com</p>
+        <p>Cam kết: Hỗ trợ tư vấn chuyên môn trọn đời | Học lại miễn phí trong 1 năm</p>
+    </footer>
+
+    <script>
+        const courses = {
+            plc: {
+                title: "Điều khiển Lập trình PLC S7-1200",
+                content: `
+                    <h2>Điều khiển Lập trình PLC S7-1200</h2>
+                    <h4>Giới thiệu khóa học</h4>
+                    <p>Khóa học được xây dựng và cập nhật liên tục để mang lại kiến thức và kỹ năng thực chiến. Cam kết hỗ trợ trọn đời và học lại miễn phí trong 1 năm.</p>
+                    <h4>Đối tượng đào tạo</h4>
+                    <ul>
+                        <li>Sinh viên kỹ thuật, sinh viên sắp tốt nghiệp.</li>
+                        <li>Kỹ sư mới đi làm từ 1-3 năm.</li>
+                        <li>Kỹ sư làm việc cho Chủ đầu tư, Giám sát, Thi công hệ thống tự động hóa.</li>
+                        <li>Học viên muốn nâng cao khả năng lập trình tự động hóa.</li>
+                    </ul>
+                    <h4>Mục tiêu đào tạo</h4>
+                    <ul>
+                        <li>Nắm vững kiến thức PLC: Nguyên lý, cấu trúc, kết nối phần cứng, tập lệnh.</li>
+                        <li>Thành thạo TIA Portal V19: Thiết kế, lập trình, giám sát.</li>
+                        <li>Cấu hình phần cứng PLC S7-1200, ngôn ngữ LD/FBD/STL.</li>
+                        <li>Thiết lập báo cáo, xử lý sự cố, tối ưu hóa chương trình.</li>
+                    </ul>
+                    <h4>Nội dung khóa học</h4>
+                    <ul>
+                        <li>Bài 1: Tổng quan S7-1200 và TIA Portal V19.</li>
+                        <li>Bài 2: Phần mềm ứng dụng TIA Portal V19.</li>
+                        <li>Bài 3: Lập trình với tập lệnh Logic.</li>
+                        <li>Bài 4: Lập trình với bộ định thời.</li>
+                        <li>Bài 5: Lập trình với bộ đếm.</li>
+                        <li>Bài 6: Lập trình xử lý tín hiệu Analog.</li>
+                        <li>Bài 7: Lập trình đếm phát xung tốc độ cao.</li>
+                        <li>Bài 8: Tập lệnh nâng cao và ứng dụng.</li>
+                        <li>Bài 9: Tổng kết & Kiểm tra.</li>
+                    </ul>
+                    <h4>Phương pháp và lộ trình</h4>
+                    <p>Kết hợp lý thuyết và thực hành dự án thực tế. Lộ trình: 9 buổi lý thuyết + 6 buổi thực hành.</p>
+                    <h4>Thông tin khóa học</h4>
+                    <p>Thời lượng: 9 buổi lý thuyết + 6 buổi thực hành, 19h00 – 21h00.</p>
+                    <h4>Tài liệu quà tặng</h4>
+                    <ul>
+                        <li>Trọn bộ tài liệu thi công hệ thống MEP.</li>
+                        <li>Bản vẽ M&E tòa nhà, nhà xưởng, năng lượng mặt trời áp mái.</li>
+                    </ul>
+                    <h4>Giảng viên</h4>
+                    <p>Nguyễn Thành Đoàn: Chuyên gia lập trình PLC và tự động hóa.</p>
+                `
+            },
+            autocad: {
+                title: "AutoCAD Cơ bản",
+                content: `
+                    <h2>AutoCAD Cơ bản</h2>
+                    <h4>Giới thiệu khóa học</h4>
+                    <p>Khóa học cung cấp kiến thức AutoCAD 2D thực chiến, hỗ trợ trọn đời và học lại miễn phí trong 1 năm.</p>
+                    <h4>Đối tượng đào tạo</h4>
+                    <ul>
+                        <li>Sinh viên kỹ thuật, kỹ sư mới ra trường.</li>
+                        <li>Kỹ sư làm việc trong M&E, tư vấn, thiết kế.</li>
+                        <li>Quản lý muốn sử dụng AutoCAD để xem, chỉnh sửa bản vẽ.</li>
+                    </ul>
+                    <h4>Mục tiêu đào tạo</h4>
+                    <ul>
+                        <li>Thành thạo AutoCAD 2D, tiêu chuẩn bản vẽ kỹ thuật.</li>
+                        <li>Vẽ, hiệu chỉnh, quản lý đối tượng, in ấn bản vẽ.</li>
+                        <li>Triển khai hồ sơ thiết kế công trình.</li>
+                    </ul>
+                    <h4>Nội dung khóa học</h4>
+                    <ul>
+                        <li>Bài 1: Tổng quan AutoCAD, lệnh tập tin.</li>
+                        <li>Bài 2: Tiêu chuẩn trình bày bản vẽ kỹ thuật.</li>
+                        <li>Bài 3: Tập lệnh vẽ cơ bản 2D.</li>
+                        <li>Bài 4: Tập lệnh hiệu chỉnh 2D.</li>
+                        <li>Bài 5: Quản lý đối tượng, văn bản.</li>
+                        <li>Bài 6: Ghi kích thước, mặt cắt, ký hiệu vật liệu.</li>
+                        <li>Bài 7: Block, chèn block, in bản vẽ.</li>
+                        <li>Bài 8: Tổng kết & Kiểm tra.</li>
+                    </ul>
+                    <h4>Phương pháp và lộ trình</h4>
+                    <p>Kết hợp lý thuyết và thực hành. Lộ trình: 6 buổi lý thuyết + 4 buổi thực hành.</p>
+                    <h4>Thông tin khóa học</h4>
+                    <p>Thời lượng: 6 buổi lý thuyết + 4 buổi thực hành, 19h00 – 21h00.</p>
+                    <h4>Tài liệu quà tặng</h4>
+                    <ul>
+                        <li>Trọn bộ tài liệu thi công hệ thống MEP.</li>
+                        <li>Bản vẽ M&E tòa nhà, nhà xưởng, năng lượng mặt trời áp mái.</li>
+                    </ul>
+                `
+            },
+            scada: {
+                title: "Thiết kế, Lập trình Hệ thống SCADA",
+                content: `
+                    <h2>Thiết kế, Lập trình Hệ thống SCADA</h2>
+                    <h4>Giới thiệu khóa học</h4>
+                    <p>Khóa học cung cấp kiến thức SCADA, HMI, biến tần thực chiến, hỗ trợ trọn đời và học lại miễn phí trong 1 năm.</p>
+                    <h4>Đối tượng đào tạo</h4>
+                    <ul>
+                        <li>Sinh viên kỹ thuật, kỹ sư tự động hóa.</li>
+                        <li>Kỹ sư làm việc trong M&E, tư vấn, thiết kế SCADA.</li>
+                        <li>Học viên muốn nâng cao kỹ năng PLC, SCADA, HMI.</li>
+                    </ul>
+                    <h4>Mục tiêu đào tạo</h4>
+                    <ul>
+                        <li>Thành thạo SCADA, WinCC, HMI, biến tần ABB ACS150.</li>
+                        <li>Cấu hình mạng, giao thức truyền thông, xử lý sự cố.</li>
+                        <li>Thiết kế giao diện giám sát, lập trình nâng cao.</li>
+                    </ul>
+                    <h4>Nội dung khóa học</h4>
+                    <ul>
+                        <li>Bài 1: Tổng quan hệ thống tự động hóa.</li>
+                        <li>Bài 2: Lập trình giao diện HMI & giao tiếp PLC.</li>
+                        <li>Bài 3: Biến tần ABB ACS150.</li>
+                        <li>Bài 4: Thực hành cài đặt biến tần.</li>
+                        <li>Bài 5: Lập trình giao diện SCADA với WinCC.</li>
+                        <li>Bài 6: Tổng kết & Kiểm tra.</li>
+                    </ul>
+                    <h4>Phương pháp và lộ trình</h4>
+                    <p>Kết hợp lý thuyết và thực hành. Lộ trình: 9 buổi lý thuyết + 6 buổi thực hành.</p>
+                    <h4>Thông tin khóa học</h4>
+                    <p>Thời lượng: 9 buổi lý thuyết + 6 buổi thực hành, 19h00 – 21h00.</p>
+                    <h4>Tài liệu quà tặng</h4>
+                    <ul>
+                        <li>Trọn bộ tài liệu thi công hệ thống MEP.</li>
+                        <li>Bản vẽ M&E tòa nhà, nhà xưởng, năng lượng mặt trời áp mái.</li>
+                    </ul>
+                `
+            },
+            tudien: {
+                title: "Thiết kế Tủ điện Công nghiệp và Dân dụng",
+                content: `
+                    <h2>Thiết kế Tủ điện Công nghiệp và Dân dụng</h2>
+                    <h4>Giới thiệu khóa học</h4>
+                    <p>Khóa học cung cấp kiến thức thiết kế, thi công tủ điện thực chiến, hỗ trợ trọn đời và học lại miễn phí trong 1 năm.</p>
+                    <h4>Đối tượng đào tạo</h4>
+                    <ul>
+                        <li>Sinh viên kỹ thuật, kỹ sư điện.</li>
+                        <li>Kỹ sư làm việc trong M&E, tư vấn, thi công tủ điện.</li>
+                        <li>Học viên muốn nâng cao kỹ năng thiết kế tủ điện.</li>
+                    </ul>
+                    <h4>Mục tiêu đào tạo</h4>
+                    <ul>
+                        <li>Hiểu thiết bị điện, tính toán, lựa chọn thiết bị.</li>
+                        <li>Thiết kế, thi công tủ điện (MSB, MDB, ATS, tụ bù).</li>
+                        <li>Lập hồ sơ dự toán, xử lý sự cố.</li>
+                    </ul>
+                    <h4>Nội dung khóa học</h4>
+                    <ul>
+                        <li>Bài 1: Thiết bị điện trong tủ điện.</li>
+                        <li>Bài 2: Quy trình thiết kế, thi công tủ điện.</li>
+                        <li>Bài 3: Tính toán lựa chọn thiết bị, dây cáp.</li>
+                        <li>Bài 4: Thiết kế tủ điện, lập hồ sơ bản vẽ.</li>
+                        <li>Bài 5: Thiết kế tủ tụ bù.</li>
+                        <li>Bài 6: Tủ bơm luân phiên.</li>
+                        <li>Bài 7: Thiết kế tủ ATS.</li>
+                        <li>Bài 8: Tổng kết & Kiểm tra.</li>
+                    </ul>
+                    <h4>Phương pháp và lộ trình</h4>
+                    <p>Kết hợp lý thuyết và thực hành. Lộ trình: 10 buổi lý thuyết + 5 buổi thực hành.</p>
+                    <h4>Thông tin khóa học</h4>
+                    <p>Thời lượng: 10 buổi lý thuyết + 5 buổi thực hành, 19h00 – 21h00.</p>
+                    <h4>Tài liệu quà tặng</h4>
+                    <ul>
+                        <li>Trọn bộ tài liệu thi công hệ thống MEP.</li>
+                        <li>Bản vẽ M&E tòa nhà, nhà xưởng, năng lượng mặt trời áp mái.</li>
+                    </ul>
+                    <h4>Giảng viên</h4>
+                    <p>Phạm Văn Nghĩa, Nguyễn Hoàng Giang: Chuyên gia thiết kế, thi công tủ điện.</p>
+                `
+            },
+            thietkedi: {
+                title: "Thiết kế Điện Hợp Chuẩn",
+                content: `
+                    <h2>Thiết kế Điện Hợp Chuẩn</h2>
+                    <h4>Giới thiệu khóa học</h4>
+                    <p>Khóa học cung cấp kiến thức thiết kế hệ thống điện thực chiến, hỗ trợ trọn đời và học lại miễn phí trong 1 năm.</p>
+                    <h4>Đối tượng đào tạo</h4>
+                    <ul>
+                        <li>Sinh viên kỹ thuật, kỹ sư điện, kỹ thuật viên MEP.</li>
+                        <li>Kỹ sư trưởng tòa nhà, kỹ sư làm việc trong M&E.</li>
+                    </ul>
+                    <h4>Mục tiêu đào tạo</h4>
+                    <ul>
+                        <li>Vận dụng quy phạm pháp luật trong thiết kế điện.</li>
+                        <li>Thiết kế hệ thống chiếu sáng, ổ cắm, báo cháy, điện nhẹ.</li>
+                        <li>Lập hồ sơ M&E, đo bóc khối lượng.</li>
+                    </ul>
+                    <h4>Nội dung khóa học</h4>
+                    <ul>
+                        <li>Phần I: Tổng quan hệ thống điện công trình.</li>
+                        <li>Phần II: Thiết kế hệ thống điện, điện nhẹ, báo cháy.</li>
+                        <li>Phần III: Đo bóc khối lượng phần điện.</li>
+                        <li>Phần IV: Tổng kết & Kiểm tra.</li>
+                    </ul>
+                    <h4>Phương pháp và lộ trình</h4>
+                    <p>Kết hợp lý thuyết và thực hành. Lộ trình: 15 buổi lý thuyết + 9 buổi thực hành.</p>
+                    <h4>Thông tin khóa học</h4>
+                    <p>Thời lượng: 15 buổi lý thuyết + 9 buổi thực hành, 19h00 – 21h00.</p>
+                    <h4>Tài liệu quà tặng</h4>
+                    <ul>
+                        <li>Trọn bộ tài liệu thi công hệ thống MEP.</li>
+                        <li>Bản vẽ M&E tòa nhà, nhà xưởng, năng lượng mặt trời áp mái.</li>
+                    </ul>
+                    <h4>Giảng viên</h4>
+                    <p>Nguyễn Bá Nhạ, Phan Thanh Tú: Chuyên gia thiết kế, thi công hệ thống điện.</p>
+                `
+            },
+            thicongme: {
+                title: "Kỹ thuật Triển khai Thi công & Giám sát M&E",
+                content: `
+                    <h2>Kỹ thuật Triển khai Thi công & Giám sát M&E</h2>
+                    <h4>Giới thiệu khóa học</h4>
+                    <p>Khóa học cung cấp kiến thức thi công, giám sát M&E thực chiến, hỗ trợ trọn đời và học lại miễn phí trong 1 năm.</p>
+                    <h4>Đối tượng đào tạo</h4>
+                    <ul>
+                        <li>Sinh viên năm cuối kỹ thuật.</li>
+                        <li>Kỹ sư làm việc trong M&E, tư vấn, giám sát.</li>
+                    </ul>
+                    <h4>Mục tiêu đào tạo</h4>
+                    <ul>
+                        <li>Vận dụng quy phạm pháp luật trong thi công, giám sát.</li>
+                        <li>Triển khai hồ sơ M&E, quản lý tiến độ, an toàn lao động.</li>
+                        <li>Xử lý lỗi thi công, lập hồ sơ chất lượng, khối lượng.</li>
+                    </ul>
+                    <h4>Nội dung khóa học</h4>
+                    <ul>
+                        <li>Phần 1: Tổng quan công trình, văn bản quy phạm pháp luật.</li>
+                        <li>Phần 2: Kỹ thuật thi công M&E.</li>
+                        <li>Phần 3: Tư vấn, giám sát chất lượng M&E.</li>
+                        <li>Phần 4: Hồ sơ chất lượng, khối lượng.</li>
+                        <li>Phần 5: Tổng kết & Kiểm tra.</li>
+                    </ul>
+                    <h4>Phương pháp và lộ trình</h4>
+                    <p>Kết hợp lý thuyết và thực hành. Lộ trình: 10 buổi lý thuyết + 5 buổi thực hành.</p>
+                    <h4>Thông tin khóa học</h4>
+                    <p>Thời lượng: 10 buổi lý thuyết + 5 buổi thực hành, 19h00 – 21h00.</p>
+                    <h4>Tài liệu quà tặng</h4>
+                    <ul>
+                        <li>Trọn bộ tài liệu thi công hệ thống MEP.</li>
+                        <li>Bản vẽ M&E tòa nhà, nhà xưởng, năng lượng mặt trời áp mái.</li>
+                    </ul>
+                    <h4>Giảng viên</h4>
+                    <p>Phan Thanh Tú: Thạc sĩ Kỹ thuật điện, kinh nghiệm thi công, giám sát M&E.</p>
+                `
+            },
+            caddi: {
+                title: "Thiết kế Bản vẽ Điện với CAD Điện",
+                content: `
+                    <h2>Thiết kế Bản vẽ Điện với CAD Điện</h2>
+                    <h4>Giới thiệu khóa học</h4>
+                    <p>Khóa học cung cấp kiến thức AutoCAD Electrical, CADe-Simu thực chiến, hỗ trợ trọn đời và học lại miễn phí trong 1 năm.</p>
+                    <h4>Đối tượng đào tạo</h4>
+                    <ul>
+                        <li>Sinh viên kỹ thuật, kỹ sư điện.</li>
+                        <li>Kỹ sư làm việc trong M&E, tư vấn, thiết kế điện.</li>
+                        <li>Quản lý muốn sử dụng AutoCAD Electrical để xem, chỉnh sửa bản vẽ.</li>
+                    </ul>
+                    <h4>Mục tiêu đào tạo</h4>
+                    <ul>
+                        <li>Thành thạo AutoCAD Electrical, CADe-Simu.</li>
+                        <li>Vẽ mạch điện, sơ đồ single line, tủ ATS, tủ tụ bù.</li>
+                        <li>Xây dựng thư viện thiết bị theo chuẩn IEC.</li>
+                    </ul>
+                    <h4>Nội dung khóa học</h4>
+                    <ul>
+                        <li>Bài 1: Phần mềm AutoCAD Electrical.</li>
+                        <li>Bài 2: Phần mềm CADe-Simu.</li>
+                        <li>Bài 3: Thiết kế mạch điều khiển trang bị điện cơ bản.</li>
+                        <li>Bài 4: Mạch điện kết nối phần cứng.</li>
+                        <li>Bài 5: Thiết kế sơ đồ single line.</li>
+                        <li>Bài 6: Vẽ sơ đồ bố trí thiết bị, nguyên lý cấp nguồn.</li>
+                        <li>Bài 7: Tổng kết & Kiểm tra.</li>
+                    </ul>
+                    <h4>Phương pháp và lộ trình</h4>
+                    <p>Kết hợp lý thuyết và thực hành. Lộ trình: 6 buổi lý thuyết + 4 buổi thực hành.</p>
+                    <h4>Thông tin khóa học</h4>
+                    <p>Thời lượng: 6 buổi lý thuyết + 4 buổi thực hành, 19h00 – 21h00.</p>
+                    <h4>Tài liệu quà tặng</h4>
+                    <ul>
+                        <li>Trọn bộ tài liệu thi công hệ thống MEP.</li>
+                        <li>Bản vẽ M&E tòa nhà, nhà xưởng, năng lượng mặt trời áp mái.</li>
+                    </ul>
+                `
+            },
+            nlmt: {
+                title: "Thiết kế, Thi công Năng lượng Mặt trời Áp mái",
+                content: `
+                    <h2>Thiết kế, Thi công Năng lượng Mặt trời Áp mái</h2>
+                    <h4>Giới thiệu khóa học</h4>
+                    <p>Khóa học cung cấp kiến thức thiết kế, thi công điện mặt trời áp mái, hỗ trợ trọn đời và học lại miễn phí trong 1 năm.</p>
+                    <h4>Đối tượng đào tạo</h4>
+                    <ul>
+                        <li>Sinh viên kỹ thuật, kỹ sư điện.</li>
+                        <li>Kỹ sư làm việc trong thi công, giám sát, thiết kế NLMT.</li>
+                        <li>Học viên muốn nâng cao kỹ năng NLMT áp mái.</li>
+                    </ul>
+                    <h4>Mục tiêu đào tạo</h4>
+                    <ul>
+                        <li>Hiểu tiêu chuẩn, quy phạm pháp luật trong thi công NLMT.</li>
+                        <li>Triển khai hồ sơ, bản vẽ, bóc tách khối lượng.</li>
+                        <li>Thi công, giám sát, vận hành, xử lý sự cố.</li>
+                    </ul>
+                    <h4>Nội dung khóa học</h4>
+                    <ul>
+                        <li>Bài 1: Tổng quan điện mặt trời, pin NLMT.</li>
+                        <li>Bài 2: Bộ nghịch lưu (Inverter) nối lưới.</li>
+                        <li>Bài 3: Giải pháp thiết kế hệ thống NLMT.</li>
+                        <li>Bài 4: Tính toán, thiết kế hệ thống NLMT.</li>
+                        <li>Bài 5: Thi công hệ thống NLMT áp mái.</li>
+                        <li>Bài 6: Vận hành, bảo dưỡng hệ thống NLMT.</li>
+                        <li>Bài 7: Tổng kết & Kiểm tra.</li>
+                    </ul>
+                    <h4>Phương pháp và lộ trình</h4>
+                    <p>Kết hợp lý thuyết và thực hành. Lộ trình: 9 buổi lý thuyết + 5 buổi thực hành.</p>
+                    <h4>Thông tin khóa học</h4>
+                    <p>Thời lượng: 9 buổi lý thuyết + 5 buổi thực hành, 19h00 – 21h00.</p>
+                    <h4>Tài liệu quà tặng</h4>
+                    <ul>
+                        <li>Trọn bộ tài liệu thi công hệ thống MEP.</li>
+                        <li>Bản vẽ M&E tòa nhà, nhà xưởng, năng lượng mặt trời áp mái.</li>
+                    </ul>
+                    <h4>Giảng viên</h4>
+                    <p>Nguyễn Hữu Khoa, Nguyễn Bá Nhạ: Chuyên gia NLMT, thiết kế, thi công.</p>
+                `
+            }
+        };
+
+        const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modal-body');
+        const closeBtn = document.querySelector('.close-btn');
+        const detailsButtons = document.querySelectorAll('.details-btn');
+
+        detailsButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const courseId = button.getAttribute('data-course');
+                modalBody.innerHTML = courses[courseId].content;
+                modal.style.display = 'block';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        document.querySelector('.register-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Bạn đã đăng ký khóa học! Vui lòng liên hệ để biết thêm chi tiết.');
+        });
+    </script>
+</body>
+
+</html>
