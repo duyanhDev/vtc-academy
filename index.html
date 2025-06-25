@@ -17,7 +17,6 @@
             line-height: 1.6;
             color: #333;
             font-size: 16px;
-            /* Base font size for better scaling */
             overflow-x: hidden;
         }
 
@@ -62,6 +61,22 @@
 
         nav ul li a:hover {
             text-decoration: underline;
+        }
+
+        /* Hamburger Menu Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 2px 0;
+            transition: all 0.3s ease;
         }
 
         /* Hero Section */
@@ -212,14 +227,33 @@
         /* Responsive */
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: column;
-                gap: 0.5rem;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: #003087;
+                padding: 1rem;
+            }
+
+            nav.active {
+                display: block;
             }
 
             nav ul {
                 flex-direction: column;
                 text-align: center;
-                gap: 0.5rem;
+                gap: 1rem;
+            }
+
+            .menu-toggle {
+                display: flex;
             }
 
             .hero {
@@ -260,7 +294,12 @@
     <header>
         <div class="header-container">
             <div class="logo">CƠ SỞ ĐÀO TẠO VÀ PHÁT TRIỂN VTC</div>
-            <nav>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav id="nav-menu">
                 <ul>
                     <li><a href="#home">Trang chủ</a></li>
                     <li><a href="#courses">Khóa học</a></li>
@@ -396,7 +435,7 @@
                         <li>Bản vẽ M&E tòa nhà, nhà xưởng, năng lượng mặt trời áp mái.</li>
                     </ul>
                     <h4>Giảng viên</h4>
-                    <p>Nguyễn Thành Đoàn: Chuyên gia lập trình PLC và tự động hóa.</p>
+                    <li>Nguyễn Thành Đoàn: Chuyên gia lập trình PLC và tự động hóa.</li>
                 `
             },
             autocad: {
@@ -516,7 +555,7 @@
                         <li>Bản vẽ M&E tòa nhà, nhà xưởng, năng lượng mặt trời áp mái.</li>
                     </ul>
                     <h4>Giảng viên</h4>
-                    <p>Phạm Văn Nghĩa, Nguyễn Hoàng Giang: Chuyên gia thiết kế, thi công tủ điện.</p>
+                    <p>Phạm Văn Nghĩa, Nguyễn Hoàng Giang: Chuyên viên thiết kế, thi công tủ điện.</p>
                 `
             },
             thietkedi: {
@@ -609,7 +648,7 @@
                     <h4>Mục tiêu đào tạo</h4>
                     <ul>
                         <li>Thành thạo AutoCAD Electrical, CADe-Simu.</li>
-                        <li>Vẽ mạch điện, sơ đồ single line, tủ ATS, tủ tụ bù.</li>
+                        <li>Vẽ mạch điện, sơ đồ định line, tủ ATS, tủ tụ bù.</li>
                         <li>Xây dựng thư viện thiết bị theo chuẩn IEC.</li>
                     </ul>
                     <h4>Nội dung khóa học</h4>
@@ -634,9 +673,9 @@
                 `
             },
             nlmt: {
-                title: "Thiết kế, Thi công Năng lượng Mặt trời Áp mái",
+                title: "Thiết kế, Thi công Năng lượng Mặt Trời Áp mái",
                 content: `
-                    <h2>Thiết kế, Thi công Năng lượng Mặt trời Áp mái</h2>
+                    <h2>Thiết kế, Thi công Năng lượng Mặt Trời Áp mái</h2>
                     <h4>Giới thiệu khóa học</h4>
                     <p>Khóa học cung cấp kiến thức thiết kế, thi công điện mặt trời áp mái, hỗ trợ trọn đời và học lại miễn phí trong 1 năm.</p>
                     <h4>Đối tượng đào tạo</h4>
@@ -680,6 +719,8 @@
         const modalBody = document.getElementById('modal-body');
         const closeBtn = document.querySelector('.close-btn');
         const detailsButtons = document.querySelectorAll('.details-btn');
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
 
         detailsButtons.forEach(button => {
             button.addEventListener('click', (e) => {
@@ -703,6 +744,11 @@
         document.querySelector('.register-btn').addEventListener('click', (e) => {
             e.preventDefault();
             alert('Bạn đã đăng ký khóa học! Vui lòng liên hệ để biết thêm chi tiết.');
+        });
+
+        // Hamburger menu toggle
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
         });
     </script>
 </body>
