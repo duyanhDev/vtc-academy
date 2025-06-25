@@ -3,19 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
     <title>VNT - Đào tạo Kỹ thuật Thực chiến</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
         }
 
         body {
             line-height: 1.6;
             color: #333;
+            font-size: 16px;
+            /* Base font size for better scaling */
+            overflow-x: hidden;
         }
 
         /* Header */
@@ -23,19 +26,20 @@
             background: #003087;
             color: #fff;
             padding: 1rem 0;
-            position: fixed;
-            width: 100%;
+            position: sticky;
             top: 0;
+            width: 100%;
             z-index: 1000;
         }
 
         .header-container {
-            max-width: 1200px;
+            max-width: 90%;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 1rem;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -46,7 +50,8 @@
         nav ul {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         nav ul li a {
@@ -61,27 +66,28 @@
 
         /* Hero Section */
         .hero {
-            background: url('./image//z6733604739316_1e2171125ad46f2104d93aea45e386a0.jpg') no-repeat center/cover;
-            height: 400px;
+            background: url('./image/z6733604739316_1e2171125ad46f2104d93aea45e386a0.jpg') no-repeat center/cover;
+            min-height: 50vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: #fff;
-            margin-top: 71px;
+            padding: 2rem;
         }
 
         .hero-content {
-            max-width: 600px;
+            max-width: 90%;
+            width: 100%;
         }
 
         .hero-content h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             margin-bottom: 1rem;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             margin-bottom: 1.5rem;
         }
 
@@ -93,6 +99,7 @@
             border-radius: 5px;
             font-weight: bold;
             display: inline-block;
+            transition: background 0.3s;
         }
 
         .btn:hover {
@@ -101,27 +108,27 @@
 
         /* Courses Section */
         .courses {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
+            max-width: 90%;
+            margin: 3rem auto;
+            padding: 0 1rem;
         }
 
         .courses h2 {
             text-align: center;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             margin-bottom: 2rem;
         }
 
         .course-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 1.5rem;
         }
 
         .course-card {
             border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 20px;
+            padding: 1.5rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
         }
@@ -131,13 +138,13 @@
         }
 
         .course-card h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             margin-bottom: 1rem;
             color: #003087;
         }
 
         .course-card p {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
             margin-bottom: 1rem;
         }
 
@@ -156,34 +163,35 @@
 
         .modal-content {
             background: #fff;
-            max-width: 800px;
+            max-width: 90%;
             margin: 5% auto;
-            padding: 20px;
+            padding: 1.5rem;
             border-radius: 8px;
             position: relative;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
         }
 
         .modal-content h2 {
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 3.5vw, 1.8rem);
             margin-bottom: 1rem;
         }
 
         .modal-content h4 {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             margin-top: 1rem;
             color: #003087;
         }
 
         .modal-content ul {
             list-style: disc;
-            margin-left: 20px;
+            margin-left: 1.5rem;
             margin-bottom: 1rem;
         }
 
         .close-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 0.5rem;
+            right: 0.5rem;
             font-size: 1.5rem;
             cursor: pointer;
         }
@@ -192,36 +200,57 @@
         footer {
             background: #003087;
             color: #fff;
-            padding: 2rem 0;
+            padding: 2rem 1rem;
             text-align: center;
         }
 
         footer p {
             margin-bottom: 0.5rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
-                gap: 10px;
+                gap: 0.5rem;
             }
 
             nav ul {
                 flex-direction: column;
                 text-align: center;
+                gap: 0.5rem;
+            }
+
+            .hero {
+                min-height: 40vh;
             }
 
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: clamp(1.5rem, 4vw, 2rem);
             }
 
             .hero-content p {
-                font-size: 1rem;
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
             }
 
             .modal-content {
-                width: 90%;
+                width: 95%;
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            nav ul li a {
+                font-size: 0.9rem;
+            }
+
+            .course-card {
+                padding: 1rem;
             }
         }
     </style>
@@ -230,7 +259,7 @@
 <body>
     <header>
         <div class="header-container">
-            <div class="logo">CƠ SỞ ĐÀO TẠO VÀ PHÁT TRIỂN VTC </div>
+            <div class="logo">CƠ SỞ ĐÀO TẠO VÀ PHÁT TRIỂN VTC</div>
             <nav>
                 <ul>
                     <li><a href="#home">Trang chủ</a></li>
@@ -243,7 +272,7 @@
 
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>CƠ SỞ ĐÀO TẠO VÀ PHÁT TRIỂN VTC </h1>
+            <h1>CƠ SỞ ĐÀO TẠO VÀ PHÁT TRIỂN VTC</h1>
             <p>Khóa học chuyên sâu, thực hành dự án thực tế, hỗ trợ tư vấn trọn đời!</p>
             <a href="#courses" class="btn">Khám phá khóa học</a>
         </div>
@@ -259,7 +288,6 @@
                     xung tốc độ cao.</p>
                 <a href="#" class="btn details-btn" data-course="plc">Xem chi tiết</a>
             </div>
-
             <div class="course-card">
                 <h3>AutoCAD Cơ bản</h3>
                 <p><strong>Thời lượng:</strong> 6 buổi lý thuyết + 4 buổi thực hành</p>
@@ -267,7 +295,6 @@
                     in ấn.</p>
                 <a href="#" class="btn details-btn" data-course="autocad">Xem chi tiết</a>
             </div>
-
             <div class="course-card">
                 <h3>Thiết kế, Lập trình Hệ thống SCADA</h3>
                 <p><strong>Thời lượng:</strong> 9 buổi lý thuyết + 6 buổi thực hành</p>
@@ -275,7 +302,6 @@
                 </p>
                 <a href="#" class="btn details-btn" data-course="scada">Xem chi tiết</a>
             </div>
-
             <div class="course-card">
                 <h3>Thiết kế Tủ điện Công nghiệp và Dân dụng</h3>
                 <p><strong>Thời lượng:</strong> 10 buổi lý thuyết + 5 buổi thực hành</p>
@@ -283,7 +309,6 @@
                     sơ dự toán.</p>
                 <a href="#" class="btn details-btn" data-course="tudien">Xem chi tiết</a>
             </div>
-
             <div class="course-card">
                 <h3>Thiết kế Điện Hợp Chuẩn</h3>
                 <p><strong>Thời lượng:</strong> 15 buổi lý thuyết + 9 buổi thực hành</p>
@@ -291,7 +316,6 @@
                 </p>
                 <a href="#" class="btn details-btn" data-course="thietkedi">Xem chi tiết</a>
             </div>
-
             <div class="course-card">
                 <h3>Kỹ thuật Triển khai Thi công & Giám sát M&E</h3>
                 <p><strong>Thời lượng:</strong> 10 buổi lý thuyết + 5 buổi thực hành</p>
@@ -299,7 +323,6 @@
                     động.</p>
                 <a href="#" class="btn details-btn" data-course="thicongme">Xem chi tiết</a>
             </div>
-
             <div class="course-card">
                 <h3>Thiết kế Bản vẽ Điện với CAD Điện</h3>
                 <p><strong>Thời lượng:</strong> 6 buổi lý thuyết + 4 buổi thực hành</p>
@@ -307,7 +330,6 @@
                     ATS.</p>
                 <a href="#" class="btn details-btn" data-course="caddi">Xem chi tiết</a>
             </div>
-
             <div class="course-card">
                 <h3>Thiết kế, Thi công Năng lượng Mặt trời Áp mái</h3>
                 <p><strong>Thời lượng:</strong> 9 buổi lý thuyết + 5 buổi thực hành</p>
@@ -317,10 +339,9 @@
         </div>
     </section>
 
-    <!-- Modal -->
     <div class="modal" id="modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
+            <span class="close-btn">×</span>
             <div id="modal-body"></div>
             <a href="#" class="btn register-btn">Đăng ký ngay</a>
         </div>
